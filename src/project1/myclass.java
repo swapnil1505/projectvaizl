@@ -72,7 +72,7 @@ public class myclass {
      Iterator it = hashmap.keySet().iterator();
      ArrayList<Integer> templist = null;
      
-   if( hashmap.containsKey("monday")&& hashmap.containsKey("sunday"))
+   if( hashmap.containsKey("Monday")&& hashmap.containsKey("Sunday"))
    {
 	   while(it.hasNext())
 	     {
@@ -91,7 +91,21 @@ public class myclass {
    {
 	   System.out.println("do not have valid entry");
    }
-     
+   
+		  int valu = (dict1.get("Monday")+dict1.get("Wednesday"))/2;
+		  int valu1 =(dict1.get("Wednesday")+dict1.get("Friday"))/2;
+		  int valu2 =(dict1.get("Tuesday")+dict1.get("Thursday"))/2;
+		  int valu3 =(dict1.get("Thursday")+dict1.get("Saturday"))/2;
+		  int valu4 =(dict1.get("Friday")+dict1.get("Sunday"))/2;
+		  dict1.putIfAbsent("Tuesday", valu);
+		  dict1.putIfAbsent("Thursday", valu1);
+		  dict1.putIfAbsent("Wednesday", valu2);
+		  dict1.putIfAbsent("Friday", valu3);
+		  dict1.putIfAbsent("Saturday", valu4);
+		  
+		
+	
+   
      for(Entry<String,Integer> entry1 :dict1.entrySet())
      {
     	System.out.println(entry1.getKey()+entry1.getValue());
