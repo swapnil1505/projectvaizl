@@ -54,7 +54,6 @@ public class myclass {
 	                
 	               
 	            }*/
-		     
 		       addValues(m1,entry.getValue());
 		     /*  if(dict1.containsKey(m1))
 		    	{
@@ -73,20 +72,26 @@ public class myclass {
      Iterator it = hashmap.keySet().iterator();
      ArrayList<Integer> templist = null;
      
-    // Map.Entry<String, ArrayList<Integer>> entry =  (Entry<String, ArrayList<Integer>>) hashmap.entrySet();
-     while(it.hasNext())
-     {
-    	 int f =0;
-    	 String key = it.next().toString();
-    	 templist = hashmap.get(key);
-    	 if(templist !=null) {
-    		 for(int h:templist) {
-    			 f += h;
-    		 }
-    	 }
-    	 
-    	 dict1.put(key,f);
-     }
+   if( hashmap.containsKey("monday")&& hashmap.containsKey("sunday"))
+   {
+	   while(it.hasNext())
+	     {
+	    	 int f =0;
+	    	 String key = it.next().toString();
+	    	 templist = hashmap.get(key);
+	    	 if(templist !=null) {
+	    		 for(int h:templist) {
+	    			 f += h;
+	    		 }
+	    	 }
+	    	 
+	    	 dict1.put(key,f);
+	     } 
+   }else
+   {
+	   System.out.println("do not have valid entry");
+   }
+     
      for(Entry<String,Integer> entry1 :dict1.entrySet())
      {
     	System.out.println(entry1.getKey()+entry1.getValue());
