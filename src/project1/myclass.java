@@ -4,34 +4,28 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
+
+
+
+
+
+
 
 public class myclass {
-	 static Map <String,ArrayList<Integer>> hashmap = new HashMap<String,ArrayList<Integer>>();
-	public static void main(String[] args) {
+	  static Map <String,ArrayList<Integer>> hashmap = new HashMap<String,ArrayList<Integer>>();
 	
-      Map <String,Integer> dict= new HashMap<String,Integer>();
+	  public static Map<String,Integer>function(Map<String,Integer> dict){
+   
       Map <String,Integer> dict1 = new HashMap<String,Integer>();
-     
-      Scanner sc = new Scanner(System.in);
-      System.out.println("How many entries");
-      
-     
-      int m = sc.nextInt();
       int value =0;
       String v ="";
       String m1 ="";
-      for(int i=0; i<m; i++)
-      {
-    	  String key = sc.next();
-    	  value = sc.nextInt();
-    	  dict.put(key, value);
-      }
      for( Entry<String,Integer> entry : dict.entrySet())
      {
     	   
@@ -91,39 +85,66 @@ public class myclass {
    {
 	   System.out.println("do not have valid entry");
    }
-   
-		  int valu = (dict1.get("Monday")+dict1.get("Wednesday"))/2;
+         if(!dict1.containsKey("Tuesday"))
+         {
+        	 int valu = (dict1.get("Monday")+dict1.get("Wednesday"))/2; 
+        	  dict1.putIfAbsent("Tuesday", valu);
+         }
+		 if(!dict1.containsKey("Thursday"))
+		 {
 		  int valu1 =(dict1.get("Wednesday")+dict1.get("Friday"))/2;
-		  int valu2 =(dict1.get("Tuesday")+dict1.get("Thursday"))/2;
-		  int valu3 =(dict1.get("Thursday")+dict1.get("Saturday"))/2;
-		  int valu4 =(dict1.get("Friday")+dict1.get("Sunday"))/2;
-		  dict1.putIfAbsent("Tuesday", valu);
 		  dict1.putIfAbsent("Thursday", valu1);
+		  
+		 }
+		  if(!dict1.containsKey("Wednesday"))
+		  {
+		  int valu2 =(dict1.get("Tuesday")+dict1.get("Thursday"))/2; 
 		  dict1.putIfAbsent("Wednesday", valu2);
-		  dict1.putIfAbsent("Friday", valu3);
-		  dict1.putIfAbsent("Saturday", valu4);
+		  }
+		  if(!dict.containsKey("Friday"))
+		  {
+			  int valu3 =(dict1.get("Thursday")+dict1.get("Saturday"))/2; 
+			  dict1.putIfAbsent("Friday", valu3);
+		  }
+		  if(!dict1.containsKey("Saturday"))
+		  {
+			  int valu4 =(dict1.get("Friday")+dict1.get("Sunday"))/2; 
+			  dict1.putIfAbsent("Saturday", valu4);
+		  }
+         Map<String,Integer> dict2 = new HashMap<String,Integer>();
+		ArrayList<String> ar =new ArrayList<String>(
+				Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"));
+		Iterator<String> itr1 = ar.iterator();
+		while(itr1.hasNext())
+			
+		{
+			String key = itr1.next();
+			Integer val11 =dict1.get(key);
+			dict2.put(key,val11);
+		}
+		  
+		  
+		  
+		  
 		  
 		
 	
    
-     for(Entry<String,Integer> entry1 :dict1.entrySet())
-     {
-    	System.out.println(entry1.getKey()+entry1.getValue());
-     }
      
+	return dict2;
+	  }
 	
-      
-	}
-	public static String datetoday(String v) throws ParseException {
+	  public static String datetoday(String v) throws ParseException {
 		   Calendar c = Calendar.getInstance();
-           java.util.Date date1;
+          java.util.Date date1;
 		date1 = new SimpleDateFormat("dd-MM-yyyy").parse(v);
-  		c.setTime(date1);
-  		String dayWeekText = new SimpleDateFormat("EEEE").format(date1);
-  		return dayWeekText;
+ 		c.setTime(date1);
+ 		String dayWeekText = new SimpleDateFormat("EEEE").format(date1);
+ 		return dayWeekText;
 		
 	}
-	 private static void addValues(String key,int n)
+	  private static void addValues(String key,int n)
+
      {
      	ArrayList<Integer> templist =null;
      	if(hashmap.containsKey(key))
@@ -139,5 +160,5 @@ public class myclass {
      	}
      	hashmap.put(key,templist);
      } 
-   
+  
 }
